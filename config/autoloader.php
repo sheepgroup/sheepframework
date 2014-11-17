@@ -26,15 +26,6 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Controllers {
-	
-	public function __construct()
-	{
-		//instances view class
-		$this->view = new Views();
-		//instances model class
-		$this->model = new Models();
-		//instances model class
-		$this->helper = new Helpers();	
-	}	
-}
+$autoloader['dirs'] = "";
+
+define("LOADER_DIRS", $autoloader['dirs']);

@@ -22,4 +22,27 @@ class Welcome extends Controllers{
 		
 		$this->view->load('welcome/index', $data);
 	}
+
+	public function formGenerator()
+	{
+		$this->helper->load('forms');
+		$this->helper->forms->open('#go', 'POST');
+		$this->helper->forms->generateFrom('configuration');
+		$this->helper->forms->submit('Enviar');
+		$this->helper->forms->close();
+		$this->helper->forms->save('welcome');
+	}
+
+	public function formGeneratorWithConfig()
+	{
+		$this->helper->load('forms');
+		$this->helper->forms->config(array(
+				'table' => 'configuration',
+				'action' => '#go2',
+				'method' => 'POST',
+				'submit' => 'Salvar'
+			)
+		);
+		$this->helper->forms->save('welcome');
+	}
 }

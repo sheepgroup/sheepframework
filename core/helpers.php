@@ -16,8 +16,8 @@
  * through the world wide web, please send an email to
  * licensing@thesheepgroup.com so we can send you a copy immediately.
  *
- * @package		SheepFramework
- * @author		SheepGroup
+ * @package		SheepFW
+ * @author		SheepDev
  * @copyright	Copyright (c) 2014, SheepGroup (http://thesheepgroup.com/)
  * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
  * @link		http://thesheepgroup.com/
@@ -26,15 +26,49 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Controllers {
+class Helpers extends Controllers {
 	
 	public function __construct()
 	{
-		//instances view class
-		$this->view = new Views();
-		//instances model class
-		$this->model = new Models();
-		//instances model class
-		$this->helper = new Helpers();	
+		$this->db = new Databases();
 	}	
+	
+	/**
+	 * Load a helper
+	 * 
+	 * @param string $helper
+	 * @param string $headers
+	 * @throws Load helper error Exception
+	 */
+	public function load($helper, $headers = true ) {	
+
+		try {
+			//verify if exists the helper
+			if (file_exists( BASEPATH.'/helpers/'.$helper.'_helper.php')) {
+				
+				//call the render function to load the view and parameters
+				$this->render( $helper );
+				$fullhelper = $helper.'_helper';
+				//instances the helper class
+				$this->$helper = new $fullhelper(); 
+			} else {
+				
+				throw new Exception( "Can't load this helper." );
+			}
+		} catch ( Exception $e ) {
+			//TODO: Exception for Loading helper
+		}
+		unset ( $helper );
+	}
+	
+	/**
+	 * Render a helper
+	 *
+	 * @param string $helper
+	 */
+	private function render( $helper )
+	{
+		require_once BASEPATH.'/helpers/'.$helper.'_helper.php';
+	}
+	
 }

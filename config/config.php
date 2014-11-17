@@ -29,7 +29,10 @@
 define('INITCONTROLLER', "welcome");
 
 //Define base Url
-define('URLPATH', "http://localhost/sheepfw/");
+define('URLPATH', "http://localhost/sheepframework-dev/");
 
 //Define Base Path
-define('BASEPATH', $_SERVER['DOCUMENT_ROOT'] . 'sheepfw/');
+define('BASEPATH', $_SERVER['DOCUMENT_ROOT'] . 'sheepframework-dev/');
+
+//Lang
+define('LANGUAGE', 'pt-BR');

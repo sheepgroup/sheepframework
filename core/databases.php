@@ -52,6 +52,7 @@ class Databases extends PDO {
 			
 			$dsn = DB_DRIVER.':host='.DB_HOST.':'.DB_PORT.';dbname='.DB_DATABASE;
 			parent::__construct($dsn, DB_USERNAME, DB_PASSWORD);
+
 		} catch (Exception $e) {
 			
 			//TODO: Exception for PDO Connect
